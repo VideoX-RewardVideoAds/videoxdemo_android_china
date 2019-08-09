@@ -1,0 +1,42 @@
+//{
+//  "project_info": {
+//    "project_number": "431621697541",
+//    "firebase_url": "https://flashlight-f0905.firebaseio.com",
+//    "project_id": "flashlight-f0905",
+//    "storage_bucket": "flashlight-f0905.appspot.com"
+//  },
+//  "client": [
+//    {
+//      "client_info": {
+//        "mobilesdk_app_id": "1:431621697541:android:d2f72b43de21ff9c",
+//        "android_client_info": {
+//          "package_name": "com.blaze.mdr.flash.light"
+//        }
+//      },
+//      "oauth_client": [
+//        {
+//          "client_id": "431621697541-6u2ge5rcue59tubqr1iqd7clvr5pf7hh.apps.googleusercontent.com",
+//          "client_type": 3
+//        }
+//      ],
+//      "api_key": [
+//        {
+//          "current_key": "AIzaSyBIXRr09WZwLnRYJnpkNhHkL2O0P5OFwUc"
+//        }
+//      ],
+//      "services": {
+//        "analytics_service": {
+//          "status": 1
+//        },
+//        "appinvite_service": {
+//          "status": 1,
+//          "other_platform_oauth_client": []
+//        },
+//        "ads_service": {
+//          "status": 2
+//        }
+//      }
+//    }
+//  ],
+//  "configuration_version": "1"
+//}

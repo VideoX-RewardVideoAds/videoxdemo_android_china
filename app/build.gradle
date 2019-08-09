@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+//        applicationId "com.videox.test"
+        applicationId "com.woodensword.zombie"
+
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode 1067
+        versionName "2.0.1"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
+
+dependencies {
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // baselib
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation(name: 'videox-sdk-vi2.0.1', ext: 'aar')
+    implementation(name: 'reposal_sdk_1.0.7', ext: 'aar')
+    implementation(name: 'analytics-lite-release-vi1.1.7', ext: 'aar')
+    implementation 'com.google.android.gms:play-services-basement:15.0.1'
+    implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
+//if you need appsflyer
+//  implementation 'com.appsflyer:af-android-sdk:4.8.6'
+
+//  穿山甲 平台
+    implementation(name: 'open_ad_sdk', ext: 'aar')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
+    //百度 平台
+    implementation(name: 'Baidu_MobAds_SDK_v5.8', ext: 'aar')
+    //广点通
+    implementation files('libs/GDTSDK.union.4.40.910.jar')
+
+}
+

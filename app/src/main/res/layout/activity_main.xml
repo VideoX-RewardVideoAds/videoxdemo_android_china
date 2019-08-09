@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:visibility="visible"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appid"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/init_button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="initSDK"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:visibility="visible"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/native_slotid_Edit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="native_slotId"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/load_native_button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="loadNative"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/show_native_button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="showNative"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:hint="ad_unit_id"
+            android:layout_height="50dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/loadReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="LoadReward"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/readyReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="isReadyReward"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/playReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="PlayReward"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <EditText
+            android:id="@+id/interEdit"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:hint="ad_unit_id"
+            android:layout_height="50dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/loadInter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="LoadInterAd"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/readyInter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="isReadyInterAd"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/playInter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="PlayInterAd"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+
+        <EditText
+            android:id="@+id/bannerrEdit"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:hint="ad_unit_id"
+            android:layout_height="50dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/loadBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="LoadBannerAd"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/ad_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+    </FrameLayout>
+        <TextView
+            android:id="@+id/describe_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</ScrollView>
