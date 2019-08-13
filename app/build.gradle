@@ -4,8 +4,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-//        applicationId "com.videox.test"
-        applicationId "com.woodensword.zombie"
+        applicationId "com.videox.test"
+
 
         minSdkVersion 17
         targetSdkVersion 27
@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation(name: 'videox-sdk-vi2.0.1', ext: 'aar')
     implementation(name: 'reposal_sdk_1.0.7', ext: 'aar')
-    implementation(name: 'analytics-lite-release-vi1.1.7', ext: 'aar')
+    implementation(name: 'analytics-lite-release-vi1.1.8', ext: 'aar')
     implementation 'com.google.android.gms:play-services-basement:15.0.1'
     implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
 //if you need appsflyer
