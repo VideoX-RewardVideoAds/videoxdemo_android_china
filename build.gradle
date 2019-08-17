@@ -30,38 +30,11 @@ allprojects {
         maven {
             url "https://jitpack.io"
         }
-        
-        maven {
-            url  "https://fyber.bintray.com/fairbid-maven"
-        }
 
         maven {
             url 'http://maven.getvideox.cn/repository/videox/'
         }
 
-        maven {
-            url "https://dl.bintray.com/ironsource-mobile/android-sdk"
-        }
-
-//        maven {
-//            url 'http://172.31.3.249:9090/repository/dotc-common/'
-//        }
-//
-//        maven {
-//            url 'http://172.31.3.249:9090/repository/maven-snapshots/'
-//        }
-
-        maven {
-            url  "https://fyber.bintray.com/fairbid-maven"
-        }
-
-        maven {
-            url  "https://adcolony.bintray.com/AdColony"
-        }
-
-//        maven {
-//            url "https://s3.amazonaws.com/moat-sdk-builds"
-//        }
     }
 }
 
