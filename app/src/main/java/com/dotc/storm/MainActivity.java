@@ -21,9 +21,7 @@ import android.widget.Toast;
 import com.dotc.ll.LocalLog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import mobi.android.BannerAd;
 import mobi.android.InterstitialAd;
@@ -170,8 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 boolean flag = RewardAd.isReady(editTextReward.getText().toString());
-                LocalLog.w(editTextReward.getText().toString() + "rewardAd isReady? " + flag);
-
                 addActionToDescribe(editTextReward.getText() + "rewardAd isReady? " + flag);
             }
         });
@@ -198,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
 
                 boolean flag = InterstitialAd.isReady(editTextInter.getText().toString());
-                LocalLog.w(editTextInter.getText().toString() + "rewardAd isReady?   " + flag);
                 addActionToDescribe(editTextInter.getText() + "interstitialAd isReady?    " + flag);
             }
 
@@ -252,13 +247,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AdLoadListener adLoadListener = new AdLoadListener() {
         @Override
         public void onLoad(String slotId) {
-            Log.e(TAG, "adLoadListener onLoad， slotId: " + slotId);
             addActionToDescribe("reward onLoad success   " + slotId);
         }
 
         @Override
         public void onError(String slotId, String errCode) {
-            Log.e(TAG, "adLoadListener onError, slotId: " + slotId + ", Reason: " + errCode);
             addActionToDescribe(slotId + "    reward onLoad error   " + errCode);
         }
     };
@@ -266,25 +259,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AdShowListener adShowListener = new AdShowListener() {
         @Override
         public void onStart(String slotId) {
-            Log.e(TAG, "adShowListener onStart， slotId: " + slotId);
             addActionToDescribe("reward onStart   " + slotId);
         }
 
         @Override
         public void onFinish(String slotId, boolean isReward) {
-            Log.e(TAG, "adShowListener onFinish, isReward: " + isReward + "， slotId: " + slotId);
             addActionToDescribe("reward onFinish   " + slotId);
         }
 
         @Override
         public void onError(String slotId, String error) {
-            Log.e(TAG, "adShowListener onError, error: " + error + "， slotId: " + slotId);
             addActionToDescribe(slotId + "    reward onError   " + error);
         }
 
         @Override
         public void onClick(String slotId) {
-            Log.e(TAG, "adShowListener onStart， slotId: " + slotId);
             addActionToDescribe("reward onClick   " + slotId);
         }
     };
@@ -292,27 +281,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private InterAdLoadListener interAdLoadListener = new InterAdLoadListener() {
         @Override
         public void onError(String slotId, String error) {
-            Log.e(TAG, "interAdLoadListener onError, error: " + error + "， slotId: " + slotId);
             addActionToDescribe(slotId + "    Inter onError   " + error);
 
         }
 
         @Override
         public void onAdLoaded(String slotId, InterstitialAdData interstitialAdData) {
-            Log.e(TAG, "interAdLoadListener onAdLoaded， slotId: " + slotId);
-//            interstitialAdData.show();
             addActionToDescribe("Inter onAdLoaded   " + slotId);
         }
 
         @Override
         public void onAdClosed(String slotId) {
-            Log.e(TAG, "interAdLoadListener onAdClosed， slotId: " + slotId);
             addActionToDescribe("Inter onAdClosed   " + slotId);
         }
 
         @Override
         public void onAdClicked(String slotId) {
-            Log.e(TAG, "interAdLoadListener onAdClicked， slotId: " + slotId);
             addActionToDescribe("Inter onAdClicked   " + slotId);
         }
     };
