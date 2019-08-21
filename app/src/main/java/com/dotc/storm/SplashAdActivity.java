@@ -32,14 +32,8 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     private RelativeLayout vParentViewGroup;
     private RelativeLayout vDefaultView;
 
-    private boolean mIsJump;
     private boolean mIsPause;
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mIsPause = true;
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,21 +63,30 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mIsPause = true;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        if(mIsPause){
+        if (mIsPause) {
             //关闭开屏界面，跳转到主界面
+            SplashAdActivity.this.finish();
+            Intent intent = new Intent();
+            intent.setClass(SplashAdActivity.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
     @Override
     public void onError(String unitId, String error) {
         LocalLog.d("splash load error:" + error);
+        SplashAdActivity.this.finish();
         Intent intent = new Intent();
         intent.setClass(SplashAdActivity.this, MainActivity.class);
         startActivity(intent);
-        mIsJump = true;
-        SplashAdActivity.this.finish();
     }
 
     @Override
@@ -95,13 +98,13 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     @Override
     public void onAdDismiss() {
         LocalLog.d("splash view close");
-        if (!mIsPause) {
-            SplashAdActivity.this.finish();
-            Intent intent = new Intent();
-            intent.setClass(SplashAdActivity.this, MainActivity.class);
-            startActivity(intent);
+        if (mIsPause) {
+            return;
         }
-
+        SplashAdActivity.this.finish();
+        Intent intent = new Intent();
+        intent.setClass(SplashAdActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
