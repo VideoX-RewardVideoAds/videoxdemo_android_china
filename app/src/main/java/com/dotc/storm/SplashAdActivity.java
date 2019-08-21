@@ -33,6 +33,13 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     private RelativeLayout vDefaultView;
 
     private boolean mIsJump;
+    private boolean mIsPause;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mIsPause = true;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +69,14 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(mIsPause){
+            //关闭开屏界面，跳转到主界面
+        }
+    }
+
+    @Override
     public void onError(String unitId, String error) {
         LocalLog.d("splash load error:" + error);
         Intent intent = new Intent();
@@ -80,7 +95,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     @Override
     public void onAdDismiss() {
         LocalLog.d("splash view close");
-        if (!mIsJump) {
+        if (!mIsPause) {
             SplashAdActivity.this.finish();
             Intent intent = new Intent();
             intent.setClass(SplashAdActivity.this, MainActivity.class);
