@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
 
-    private static String mAppId = "3288";
-    private static String mPubKey = "836cc7fdb2911c7c3e408aa97319d2fc";
-
+    public static String mAppId = "3552";
+    public static String mPubKey = "f52275c7006fe85101637eedb1f73d5b";
     private EditText vNativeSlotIdEdit;
     private EditText editTextReward;
     private Button loadNativeButton;
@@ -66,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private View mLoadBanner;
     private EditText mEtBanner;
 
+    private EditText mSplashUnitIdEdit;
+    private Button mSplashLoadButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +98,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         describeText = findViewById(R.id.describe_text);
         mAdViewContainer = findViewById(R.id.ad_container_layout);
 
+        mSplashUnitIdEdit = findViewById(R.id.splash_edit);
+        mSplashLoadButton = findViewById(R.id.splash_button);
+
         initSDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 VideoXSDK.initSdk(MainActivity.this, mAppId, mPubKey);
+            }
+        });
+        mSplashLoadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String splashUnitid = mSplashUnitIdEdit.getText().toString().trim();
+                if(TextUtils.isEmpty(splashUnitid)){
+                    Toast.makeText(MainActivity.this,"please fill unitid.",Toast.LENGTH_SHORT).show();
+                }
+
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,SplashAdActivity.class);
+                intent.putExtra("unitId",splashUnitid);
+                startActivity(intent);
             }
         });
 
@@ -115,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         NativeAdViewBinder adViewBinder = new NativeAdViewBinder.Builder(getApplicationContext(), R.layout.layout_native_hot_ad_view)
                                 .mediaId(R.id.nad_native_ad_media)
                                 .adChoicesImageId(R.id.nad_native_ad_choices_image)
-                                .iconImageId(R.id.nad_native_ad_icon_image)
+//                                .iconImageId(R.id.nad_native_ad_icon_image)
                                 .titleTextId(R.id.nad_native_ad_title_text)
                                 .subtitleTextId(R.id.nad_native_ad_subtitle_text)
                                 .callToActionTextId(R.id.nad_native_ad_call_to_action_text)
@@ -264,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onFinish(String slotId, boolean isReward) {
-            addActionToDescribe("reward onFinish   " + slotId);
+            addActionToDescribe("reward onFinish   " + slotId + "reward:"+isReward);
         }
 
         @Override
@@ -308,10 +326,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void addActionToDescribe(String describe) {
+        Log.d("Videox",describe);
         try{
             mDescribleAction.append(describe);
             mDescribleAction.append("\n");
             describeText.setText(mDescribleAction.toString());
+
         }catch (Exception e){
             e.printStackTrace();
         }

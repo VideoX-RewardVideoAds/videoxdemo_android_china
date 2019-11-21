@@ -4,7 +4,7 @@
 
 # 接入方式
 
-- 通过运营获取架包的网络地址：com.videox.sdk:release_v\*：\*
+- 通过运营获取架包的网络地址：com.videox.sdk:release_vc\*：\*
 - 在目标项目对应 module 的 dependencies 中添加上述新加包的依赖
 - 按照 build.gradle 文件内容添加相应的依赖
 - 添加不同平台的warehouse地址，请参阅演示项目的build.gradle或dependencies文件
@@ -61,9 +61,9 @@ implementation 'com.google.android.gms:play-services-basement:15.0.1'
 implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
     
 // videoX Adbroad(国外默认版本，具体以运营提供为准)
-implementation 'com.videox.sdk:release_va2.0.1:11111111'
+//implementation 'com.videox.sdk:release_va2.0.1:11111111'
 // videoX China(国内默认版本，具体以运营提供为准)
-//implementation 'com.videox.sdk:release_vc2.0.1:111'
+    implementation 'com.videox.sdk:release_vc2.0.5.01:1111111'
 }
 
 ```
@@ -388,7 +388,7 @@ public interface BannerAdListener {
 ```
 
 （3）展示Banner广告
-广告加载成功，则会通过onAdLoaded接口进行回调。通过BannerAdData对象将广告View渲染到提供的父容器中，父容器的大小可以设置为100dp,根据返回的大小适当调整。。
+广告加载成功，则会通过onAdLoaded接口进行回调。通过BannerAdData对象将广告View渲染到提供的父容器中，父容器的高度大小可以设置为80dp,根据返回的大小适当调整。。
 `bannerAdData.addAdView(adViewContainer);`
 
 ------

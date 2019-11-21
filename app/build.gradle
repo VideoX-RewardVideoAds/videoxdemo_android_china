@@ -5,8 +5,9 @@ android {
     compileSdkVersion 27
     defaultConfig {
 //        applicationId "com.qq.e.union.demo"
-        applicationId "com.qujianpan.client"
-
+//        applicationId "com.qujianpan.client"
+        applicationId "com.baidu.mobads.demo.main"
+//        applicationId 'com.union_test.toutiao'
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 1067
@@ -42,7 +43,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.gms:play-services-basement:15.0.1'
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.videox.sdk:release_vc2.0.4.08:1111111'
+    implementation 'com.videox.sdk:release_vc2.0.5.01:1111111'
+//    implementation 'com.videox.sdk:release_vc2.0.1:111'
+
 
 }
 
