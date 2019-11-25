@@ -181,9 +181,9 @@ VideoXSDK.initSdk(this,"appid","pubKey");
 ##### 注意事项
 
 - adUnitId: ad unit id（广告位的id）,  请在app page中查找
-- 广告在show之前的逻辑场景需要先用load的方法进行广告加载，然后通过isReady判断是否缓存成功（激励视频需要缓存广告素材，需要一定的时间），如果isReady为true则可以调用show方法来展示。
+- 每次广告在show之前的逻辑场景需要先用load的方法进行广告加载，然后通过isReady判断是否缓存成功（激励视频需要缓存广告素材，需要一定的时间），如果isReady为true则可以调用show方法来展示。
 - 禁止在 onLoad 回调中调用 RewardAd.show 方法
-- 禁止在 onError 回调中调用 RewardAd.loadAd 方法
+- 禁止在 onError 回调中直接调用 RewardAd.loadAd，可能会造成一直循环请求的bug.
 
 
 ##### 2、插屏广告
@@ -391,12 +391,16 @@ public interface BannerAdListener {
 广告加载成功，则会通过onAdLoaded接口进行回调。通过BannerAdData对象将广告View渲染到提供的父容器中，父容器的大小可以设置为100dp,根据返回的大小适当调整。。
 `bannerAdData.addAdView(adViewContainer);`
 
-------
-
 ##### 注意事项
 
 > - 如果发现分包打包在 Android5.0 以下手机出现崩溃现象(not found class) 请让Application类继承自 MultiDexApplicaiton，如果没有Application类请手动添加。
 
 > - 如果出现重复引入类的问题。在终端输入gradlew :'app':dependencies查看各个架包中以来的类，并判断重复的类在哪些架包中。通过exclude group: 或者 exclude module: 的方式剔除重复的类。命令中'app'为当前的module名称。
-------
 
+
+##### 广告位的测试UnitId,可以在测试的demo种填写以下UnitId，填充展示相应类型的广告。
+- 插屏UnitI         :22227
+- 激励视频UnitId    :22228
+- 横幅广告UnitId    :22229
+- 高级原生广告UnitId:22230
+- 开屏广告UnitId    :22231
