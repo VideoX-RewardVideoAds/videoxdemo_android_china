@@ -16,78 +16,78 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:visibility="visible"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/appid"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="先初始化SDK"
+                android:textColor="#FF0000"
+                android:gravity="center_horizontal"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/init_button"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="initSDK"
                 android:textAllCaps="false" />
 
             <Button
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:textAllCaps="false" />
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:visibility="invisible" />
 
         </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:visibility="visible"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/native_slotid_Edit"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <Button
+                android:id="@+id/loadBanner"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="native_slotId"
+                android:enabled="true"
+                android:text="LoadBanner"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/load_native_button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="loadNative"
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/show_native_button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/splash_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="showNative"
+                android:enabled="true"
+                android:text="LoadSplash"
                 android:textAllCaps="false" />
-
         </LinearLayout>
 
 
         <View
-            android:background="#000"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
-
-        <EditText
-            android:id="@+id/editText"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:hint="ad_unit_id"
-            android:layout_height="50dp" />
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888" />
 
 
         <LinearLayout
@@ -124,16 +124,11 @@
 
 
         <View
-            android:background="#000"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
-
-        <EditText
-            android:id="@+id/interEdit"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:hint="ad_unit_id"
-            android:layout_height="50dp" />
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888" />
 
 
         <LinearLayout
@@ -167,48 +162,30 @@
                 android:textAllCaps="false" />
 
         </LinearLayout>
-
         <View
-            android:background="#000"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
-
-        <EditText
-            android:id="@+id/bannerrEdit"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:hint="ad_unit_id"
-            android:layout_height="50dp" />
-
-
-        <LinearLayout
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888" />
+        <FrameLayout
+            android:id="@+id/ad_container_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"/>
 
-            <Button
-                android:id="@+id/loadBanner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:text="LoadBannerAd"
-                android:textAllCaps="false" />
+        <FrameLayout
+            android:id="@+id/banner_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"/>
 
-        </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/ad_container_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-    </FrameLayout>
         <TextView
             android:id="@+id/describe_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

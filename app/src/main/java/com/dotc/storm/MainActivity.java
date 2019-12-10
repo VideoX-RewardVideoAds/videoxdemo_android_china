@@ -18,8 +18,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dotc.ll.LocalLog;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,26 +44,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static String mAppId = "3552";
     public static String mPubKey = "f52275c7006fe85101637eedb1f73d5b";
-    private EditText vNativeSlotIdEdit;
-    private EditText editTextReward;
+
+    public static String mFullScreenUnitId = "22227";
+    public static String mRewardUnitId = "22228";
+    public static String mBannerUnitId = "22229";
+    public static String mNativeUnitId = "22230";
+    public static String mSplashUnitId = "22231";
+
     private Button loadNativeButton;
-    private Button showNativeButton;
     private Button loadReward;
     private Button readyReward;
     private Button showReward;
     private Button initSDK;
 
-    private EditText editTextInter;
     private Button loadInter;
     private Button readyInter;
     private Button showInter;
     private TextView describeText;
     private FrameLayout mAdViewContainer;
+    private FrameLayout vBannerAdViewContainer;
     private StringBuilder mDescribleAction;
     private View mLoadBanner;
-    private EditText mEtBanner;
 
-    private EditText mSplashUnitIdEdit;
     private Button mSplashLoadButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,46 +78,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initSDK = findViewById(R.id.init_button);
 
-        vNativeSlotIdEdit = findViewById(R.id.native_slotid_Edit);
         loadNativeButton = findViewById(R.id.load_native_button);
-        showNativeButton = findViewById(R.id.show_native_button);
 
-        editTextReward = findViewById(R.id.editText);
         loadReward = findViewById(R.id.loadReward);
         readyReward = findViewById(R.id.readyReward);
         showReward = findViewById(R.id.playReward);
 
-        editTextInter = findViewById(R.id.interEdit);
         loadInter = findViewById(R.id.loadInter);
         readyInter = findViewById(R.id.readyInter);
         showInter = findViewById(R.id.playInter);
 
         mLoadBanner = findViewById(R.id.loadBanner);
-        mEtBanner = findViewById(R.id.bannerrEdit);
 
         describeText = findViewById(R.id.describe_text);
         mAdViewContainer = findViewById(R.id.ad_container_layout);
+        vBannerAdViewContainer = findViewById(R.id.banner_container_layout);
 
-        mSplashUnitIdEdit = findViewById(R.id.splash_edit);
         mSplashLoadButton = findViewById(R.id.splash_button);
 
         initSDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                VideoXSDK.initSdk(MainActivity.this, mAppId, mPubKey);
+//不需要初始化回调的用这个方法
+//              VideoXSDK.initSdk(MainActivity.this, mAppId, mPubKey);
+
+                VideoXSDK.initSdk(MainActivity.this, mAppId, mPubKey,new VideoXSDK.InitListener(){
+
+                    @Override
+                    public void initSuccess() {
+                        addActionToDescribe("sdk init success");
+                    }
+
+                    @Override
+                    public void initFail() {
+                        addActionToDescribe("sdk init fail");
+                    }
+                });
             }
         });
         mSplashLoadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String splashUnitid = mSplashUnitIdEdit.getText().toString().trim();
-                if(TextUtils.isEmpty(splashUnitid)){
-                    Toast.makeText(MainActivity.this,"please fill unitid.",Toast.LENGTH_SHORT).show();
-                }
 
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,SplashAdActivity.class);
-                intent.putExtra("unitId",splashUnitid);
+                intent.putExtra("unitId",mSplashUnitId);
                 startActivity(intent);
             }
         });
@@ -125,10 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadNativeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                        String slotId = vNativeSlotIdEdit.getText().toString().trim();
-                        if (TextUtils.isEmpty(slotId)) {
-                            addActionToDescribe("native slotId is empty,please add!");
-                        }
+
 
                         NativeAdViewBinder adViewBinder = new NativeAdViewBinder.Builder(getApplicationContext(), R.layout.layout_native_hot_ad_view)
                                 .mediaId(R.id.nad_native_ad_media)
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 .interactiveViewId(R.id.rl_view_container)
                                 .build();
 
-                        NativeAd.loadAd(slotId, adViewBinder, new NativeAdLoadListener() {
+                        NativeAd.loadAd(mNativeUnitId, adViewBinder, new NativeAdLoadListener() {
                             @Override
                             public void onError(String adUnitId, String error) {
                                 addActionToDescribe("native slotId onError");
@@ -167,34 +169,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        showNativeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         loadReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        RewardAd.loadAd(editTextReward.getText().toString(), adLoadListener);
-                        addActionToDescribe("load reward " + editTextReward.getText());
+                        RewardAd.loadAd(mRewardUnitId, adLoadListener);
+                        addActionToDescribe("load reward " + mRewardUnitId);
             }
         });
 
         readyReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean flag = RewardAd.isReady(editTextReward.getText().toString());
-                addActionToDescribe(editTextReward.getText() + "rewardAd isReady? " + flag);
+                boolean flag = RewardAd.isReady(mRewardUnitId);
+                addActionToDescribe(mRewardUnitId + " rewardAd isReady? " + flag);
             }
         });
 
         showReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RewardAd.show(editTextReward.getText().toString(), adShowListener);
-                addActionToDescribe("rewardAd show " + editTextReward.getText());
+                RewardAd.show(mRewardUnitId, adShowListener);
+                addActionToDescribe("rewardAd show " + mRewardUnitId);
             }
         });
 
@@ -202,8 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadInter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        InterstitialAd.loadAd(editTextInter.getText().toString(), interAdLoadListener);
-                        addActionToDescribe("load interstitialAd " + editTextInter.getText());
+                        InterstitialAd.loadAd(mFullScreenUnitId, interAdLoadListener);
+                        addActionToDescribe("load interstitialAd " + mFullScreenUnitId);
             }
         });
 
@@ -211,8 +207,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                boolean flag = InterstitialAd.isReady(editTextInter.getText().toString());
-                addActionToDescribe(editTextInter.getText() + "interstitialAd isReady?    " + flag);
+                boolean flag = InterstitialAd.isReady(mFullScreenUnitId);
+                addActionToDescribe(mFullScreenUnitId + " interstitialAd isReady?    " + flag);
             }
 
         });
@@ -220,20 +216,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showInter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InterstitialAd.show(editTextInter.getText().toString());
-                addActionToDescribe("interstitialAd show    " + editTextInter.getText());
+                InterstitialAd.show(mFullScreenUnitId);
+                addActionToDescribe("interstitialAd show    " + mFullScreenUnitId);
             }
         });
 
         mLoadBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String slotId = mEtBanner.getText().toString();
-                if (TextUtils.isEmpty(slotId)) return;
-                BannerAd.loadAd(slotId, new BannerAdListener() {
+                BannerAd.loadAd(mBannerUnitId, new BannerAdListener() {
                     @Override
                     public void onAdLoaded(String adUnitId, BannerAdData bannerAdData) {
-                        bannerAdData.addAdView(mAdViewContainer);
+                        bannerAdData.addAdView(vBannerAdViewContainer);
                         addActionToDescribe("banner slotId onAdLoaded!");
                     }
 
@@ -341,10 +335,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @TargetApi(Build.VERSION_CODES.M)
     private void checkAndRequestPermission() {
         List<String> lackedPermission = new ArrayList<String>();
+//        //为了精准定向最好添加该权限
 //        if (!(checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)) {
 //            lackedPermission.add(Manifest.permission.READ_PHONE_STATE);
 //        }
-        //为了精准定向最好添加该权限
 //        if (!(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
 //            lackedPermission.add(Manifest.permission.ACCESS_FINE_LOCATION);
 //        }

@@ -38,14 +38,14 @@ repositories {
 
 
 dependencies {
+
     // baselib
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.gms:play-services-basement:15.0.1'
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.videox.sdk:release_vc2.0.5.01:1111111'
-//    implementation 'com.videox.sdk:release_vc2.0.1:111'
-
+//    implementation 'com.videox.sdk:release_vc2.0.5.01:1111111'
+    implementation 'com.videox.sdk:release_vc2.1.0.01:11111111'
 
 }
 
