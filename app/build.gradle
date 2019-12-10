@@ -10,8 +10,8 @@ android {
 //        applicationId 'com.union_test.toutiao'
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1067
-        versionName "2.0.1"
+        versionCode 1071
+        versionName "2.1.0"
         multiDexEnabled true
     }
 
