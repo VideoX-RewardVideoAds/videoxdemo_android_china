@@ -25,6 +25,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     private RelativeLayout vDefaultView;
 
     private boolean mIsClick;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,6 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
         mUnitid = getIntent().getStringExtra("unitId");
 
         if (TextUtils.isEmpty(mUnitid)) {
-            mUnitid = "22231";
             VideoXSDK.initSdk(SplashAdActivity.this, MainActivity.mAppId, MainActivity.mPubKey, new VideoXSDK.InitListener() {
                 @Override
                 public void initSuccess() {
@@ -44,9 +44,9 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            SplashAd.loadAd(SplashAdActivity.this, vParentViewGroup, mUnitid, SplashAdActivity.this);
+                            SplashAd.loadAd(SplashAdActivity.this, vParentViewGroup, "22231", SplashAdActivity.this);
                         }
-                    },2000);
+                    }, 2000);
                 }
 
                 @Override
@@ -55,7 +55,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
                 }
             });
 
-        }else{
+        } else {
             SplashAd.loadAd(SplashAdActivity.this, vParentViewGroup, mUnitid, SplashAdActivity.this);
         }
     }
@@ -63,8 +63,8 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("VC-Mediation","splash onResume");
-        if(mIsClick){
+        Log.d("VC-Mediation", "splash onResume");
+        if (mIsClick) {
             SplashAdActivity.this.finish();
             Intent intent = new Intent();
             intent.setClass(SplashAdActivity.this, MainActivity.class);
@@ -74,7 +74,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
 
     @Override
     public void onError(String unitId, String error) {
-        Log.d("VC-Mediation","splash load error:"+error);
+        Log.d("VC-Mediation", "splash load error:" + error);
         Intent intent = new Intent();
         intent.setClass(SplashAdActivity.this, MainActivity.class);
         startActivity(intent);
@@ -83,26 +83,32 @@ public class SplashAdActivity extends AppCompatActivity implements SplashListene
 
     @Override
     public void onAdLoadedAndShow() {
-        Log.d("VC-Mediation","onAdLoadedAndShow splash load and show");
+        Log.d("VC-Mediation", "onAdLoadedAndShow splash load and show");
         vDefaultView.setVisibility(View.GONE);
     }
 
     @Override
     public void onAdDismiss() {
-        Log.d("VC-Mediation","onAdDismiss splash view close");
-        SplashAdActivity.this.finish();
-        Intent intent = new Intent();
-        intent.setClass(SplashAdActivity.this, MainActivity.class);
-        startActivity(intent);
+        Log.d("VC-Mediation", "onAdDismiss splash view close");
+        if (TextUtils.isEmpty(mUnitid)) {
+            SplashAdActivity.this.finish();
+            Intent intent = new Intent();
+            intent.setClass(SplashAdActivity.this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            SplashAdActivity.this.finish();
+        }
     }
 
     @Override
     public void onAdClicked() {
-        Log.d("VC-Mediation","onAdClicked");
+        Log.d("VC-Mediation", "onAdClicked");
         mIsClick = true;
     }
 
-    /** 开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费 */
+    /**
+     * 开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
