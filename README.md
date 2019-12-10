@@ -86,7 +86,7 @@ implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
 
 （2）建议不要随便增加其他平台广告架包，如有需要告知运营，否则造成不兼容的问题。
 
-（3）官方demo GitHub地址：https://github.com/VideoX-RewardVideoAds。
+（3）官方demo GitHub地址：https://github.com/VideoX-RewardVideoAds/videoxdemo_android_china
 
 （4）target SDK大于等于23（6.0）时，则需要动态申请“android.permission.WRITE_EXTERNAL_STORAGE”权限
 
