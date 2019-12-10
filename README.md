@@ -63,7 +63,7 @@ implementation 'com.google.android.gms:play-services-ads-identifier:15.0.1'
 // videoX Adbroad(国外默认版本，具体以运营提供为准)
 //implementation 'com.videox.sdk:release_va2.0.1:11111111'
 // videoX China(国内默认版本，具体以运营提供为准)
-    implementation 'com.videox.sdk:release_vc2.0.5.01:1111111'
+  implementation 'com.videox.sdk:release_vc2.1.0.01:11111111'
 }
 
 ```
