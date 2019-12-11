@@ -3,6 +3,7 @@ package com.dotc.storm;
 import android.app.Application;
 import android.content.Context;
 import android.provider.Settings;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.dotc.ll.LocalLog;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 import mobi.android.VideoXSDK;
 
-public class MyApplicaton extends Application {
+public class MyApplicaton extends MultiDexApplication {
     private static final String TAG = "MyApplication";
 
     @Override
